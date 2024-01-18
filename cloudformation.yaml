@@ -247,7 +247,7 @@ Resources:
     Type: AWS::ECS::Service
     Properties:
       Cluster: ECS-Cluster-FlaskApp
-      TaskDefinition: ./TaskDefinatioECS-Service.json
+      TaskDefinition: TaskDefinatioECS-Service.json
       LaunchType: FARGATE
       ServiceName: ECS-Service
       SchedulingStrategy: REPLICA

@@ -30,38 +30,38 @@ Parameters:
   GitHubOwner:
     Description: Name of GitHub Owner
     Type: String
-    Default: 
+    Default: Roopak911 
 
   GitHubRepo:
     Description: Name of GitHub Repo
     Type: String
-    Default: 
+    Default: AWS-DevOps-Continuous-Docker-Deployment-to-AWS-ECS-Fargate
 
   GitHubBranch:
     Description: Name of GitHub Repo Branch
     Type: String
-    Default: 
+    Default: main
 
   GitHubOAuthToken:
     Type: String
     NoEcho: true
-    Default: 
+    Default: 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
 
   BuckerName:
     Description: S3 Bucket Name
     Type: String
-    Default: 
+    Default: cloudformation-info-roopak
 
   NotificationEmail:
     Type: String
     Description: Email address where notifications will be sent
-    Default: 
+    Default: roopaktelharkkar@yahooo.com
 
 Resources:
   PrivateVPC:
     Type: AWS::EC2::VPC
     Properties:
-      CidrBlock: !Ref VpcCIDR
+      CidrBlock:  !Ref VpcCIDR
       Tags:
       - Key: stack
         Value: production
@@ -84,7 +84,7 @@ Resources:
     Properties:
       VpcId: !Ref PrivateVPC
       CidrBlock: !Ref PublicSubnet1CIDR
-      AvailabilityZone: "us-east-1a"
+      AvailabilityZone: "ap-south-1a"
       Tags:
       - Key: Name
         Value: PublicSubnet-az-1
@@ -94,7 +94,7 @@ Resources:
     Properties:
       VpcId: !Ref PrivateVPC
       CidrBlock: !Ref PrivateSubnet1CIDR
-      AvailabilityZone: "us-east-1a"
+      AvailabilityZone: "ap-south-1a"
       Tags:
       - Key: Name
         Value: PrivateSubnet-az-1
@@ -104,7 +104,7 @@ Resources:
     Properties:
       VpcId: !Ref PrivateVPC
       CidrBlock: !Ref PublicSubnet2CIDR
-      AvailabilityZone: "us-east-1b"
+      AvailabilityZone: "ap-south-1b"
       Tags:
       - Key: Name
         Value: PublicSubnet-az-2
@@ -114,7 +114,7 @@ Resources:
     Properties:
       VpcId: !Ref PrivateVPC
       CidrBlock: !Ref PrivateSubnet2CIDR
-      AvailabilityZone: "us-east-1b"
+      AvailabilityZone: "ap-south-1b"
       Tags:
       - Key: Name
         Value: PrivateSubnet-az-2
@@ -247,7 +247,7 @@ Resources:
     Type: AWS::ECS::Service
     Properties:
       Cluster: ECS-Cluster-FlaskApp
-      TaskDefinition: <TASK-DEFINATION PATH>
+      TaskDefinition: ./TaskDefinatioECS-Service.json
       LaunchType: FARGATE
       ServiceName: ECS-Service
       SchedulingStrategy: REPLICA
@@ -351,8 +351,8 @@ Resources:
             Statement:
               - Effect: Allow
                 Resource:
-                  - 'arn:aws:logs:us-east-1:<Account-ID>:log-group:/aws/codebuild/CodePipelineRole'
-                  - 'arn:aws:logs:us-east-1:<Account-ID>:log-group:/aws/codebuild/CodePipelineRole:*'
+                  - 'arn:aws:logs:ap-south-1:914164844029:log-group:/aws/codebuild/CodePipelineRole'
+                  - 'arn:aws:logs:ap-south-1:914164844029:log-group:/aws/codebuild/CodePipelineRole:*'
                   - '*'
                 Action:
                   - 'logs:CreateLogGroup'
@@ -381,7 +381,7 @@ Resources:
                   - 'codebuild:BatchPutTestCases'
                   - 'codebuild:BatchPutCodeCoverages'
                 Resource:
-                  - 'arn:aws:codebuild:us-east-1:<Account-ID>:report-group/CodePipelineRole-*'
+                  - 'arn:aws:codebuild:ap-south-1:914164844029:report-group/CodePipelineRole-*'
               - Effect: Allow
                 Action: 'codebuild:*'
                 Resource: '*'
@@ -404,8 +404,8 @@ Resources:
             Statement:
             - Effect: Allow
               Resource:
-              - arn:aws:logs:us-east-1:<Account-ID>:log-group:/aws/codebuild/CodeBuildRole
-              - arn:aws:logs:us-east-1:<Account-ID>:log-group:/aws/codebuild/CodeBuildRole:*
+              - arn:aws:logs:ap-south-1:914164844029:log-group:/aws/codebuild/CodeBuildRole
+              - arn:aws:logs:ap-south-1:914164844029:log-group:/aws/codebuild/CodeBuildRole:*
               - "*"
               Action:
               - logs:CreateLogGroup
@@ -433,7 +433,7 @@ Resources:
               - codebuild:BatchPutTestCases
               - codebuild:BatchPutCodeCoverages
               Resource:
-              - arn:aws:codebuild:us-east-1:<Account-ID>:report-group/CodeBuildRole-*
+              - arn:aws:codebuild:ap-south-1:914164844029:report-group/CodeBuildRole-*
             - Effect: Allow
               Action: 'codebuild:*'
               Resource: '*'

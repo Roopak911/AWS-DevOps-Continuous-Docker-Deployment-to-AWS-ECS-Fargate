@@ -2,7 +2,7 @@
     "containerDefinitions": [
         {
             "name": "flaskapp",
-            "image": "<Account-ID>.dkr.ecr.us-east-1.amazonaws.com/ecs-flaskapp:latest",
+            "image": "914164844029.dkr.ecr.ap-south-1.amazonaws.com/ecs-flaskapp:latest",
             "cpu": 0,
             "portMappings": [
                 {
@@ -27,7 +27,7 @@
         }
     ],
     "family": "TaskDefinatioECS-Service",
-    "executionRoleArn": "arn:aws:iam::<Account-ID>:role/ecsTaskExecutionRole",
+    "executionRoleArn": "arn:aws:iam::914164844029:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
     "revision": 3,
     "volumes": [],

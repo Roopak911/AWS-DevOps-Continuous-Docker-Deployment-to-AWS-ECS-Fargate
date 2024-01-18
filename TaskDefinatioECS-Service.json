@@ -26,7 +26,7 @@
             "ulimits": []
         }
     ],
-    "family": "TaskDefinatioECS-Service",
+    "family": "task_definition_ecs_service",
     "executionRoleArn": "arn:aws:iam::914164844029:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
     "revision": 3,
